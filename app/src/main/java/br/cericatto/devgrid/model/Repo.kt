@@ -1,0 +1,35 @@
+package br.cericatto.devgrid.model
+
+data class Repo(
+    val id: String = "42342883",
+    val node_id: String = "MDEwOlJlcG9zaXRvcnk0MjM0Mjg4Mw==",
+    val name: String = "ActivityLifeCycle",
+    val full_name: String = "graffiti75/ActivityLifeCycle",
+    val private: Boolean = false
+//    val owner: Owner,
+//    val html_url: String ,
+//    val description: String,
+//    val fork: Boolean,
+//    val url: String,
+//    val homepage: String,
+//    val size: Int,
+//    val stargazers_count: Int,
+//    val watchers_count: Int,
+//    val language: String,
+//    val has_issues: Boolean,
+//    val has_projects: Boolean,
+//    val has_downloads: Boolean,
+//    val has_wiki: Boolean,
+//    val has_pages: Boolean,
+//    val forks_count: Int,
+//    val mirror_url: String,
+//    val archived: Boolean,
+//    val disabled: Boolean,
+//    val open_issues_count: Int,
+//    val license: String,
+//    val forks: Int,
+//    val open_issues: Int,
+//    val watchers: Int,
+//    val default_branch: String,
+//    val permissions: Permissions
+)
