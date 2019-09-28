@@ -16,6 +16,8 @@ class TestActivityTest {
     @get:Rule
     var activityRule: ActivityTestRule<TestActivity> = ActivityTestRule(TestActivity::class.java)
 
+    // TODO: https://github.com/square/retrofit/issues/2393
+
     @Test
     fun givenRetrofitApiCall_whenCallingGetRepos_thenCheckSuccessfullResponse() {
         val idlingResource = OkHttp3IdlingResource.create(

@@ -2,11 +2,13 @@ package br.cericatto.devgrid.view
 
 import android.content.Intent
 import android.os.Bundle
+import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.di.component.DaggerTestComponent
 import br.cericatto.devgrid.presenter.di.module.TestModule
+import br.cericatto.devgrid.presenter.getHeaderAuthentication
 import kotlinx.android.synthetic.main.activity_test.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,7 +49,7 @@ class TestActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mApiService.getRepos().enqueue(object : Callback<List<Repo>> {
+        mApiService.getRepos(AppConfiguration.getHeaderAuthentication()).enqueue(object : Callback<List<Repo>> {
             override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
                 if (response.isSuccessful) {
                     val repo = response.body()

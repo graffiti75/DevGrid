@@ -55,6 +55,7 @@ class GithubPresenterTest {
         repos = listOf(Repo())
     }
 
+    /*
     @Test
     fun initDataSet_shouldGetRepos() {
         `when`(apiService!!.getRepos()).thenReturn(mockCall)
@@ -90,4 +91,5 @@ class GithubPresenterTest {
 
         presenter!!.showErrorMessage()
     }
+    */
 }
