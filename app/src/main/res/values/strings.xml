@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DevGrid</string>
+
+    <string name="activity_test">Espresso Test</string>
 </resources>
