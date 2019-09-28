@@ -2,13 +2,19 @@ package br.cericatto.devgrid.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import androidx.annotation.CallSuper
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.presenter.di.component.ApplicationComponent
 import kotlinx.android.synthetic.main.toolbar.*
 
+/**
+ * BaseActivity.kt.
+ *
+ * @author Rodrigo Cericatto
+ * @since September 26, 2019
+ */
 abstract class BaseActivity : AppCompatActivity() {
 
     //--------------------------------------------------

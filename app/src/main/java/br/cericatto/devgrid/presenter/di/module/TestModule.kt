@@ -12,7 +12,7 @@ import retrofit2.Retrofit
  * @since September 27, 2019
  */
 @Module
-class TestModule() {
+class TestModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)

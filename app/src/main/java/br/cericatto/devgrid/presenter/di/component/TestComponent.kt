@@ -6,7 +6,7 @@ import br.cericatto.devgrid.view.TestActivity
 import dagger.Component
 
 /**
- * MainComponent.kt.
+ * TestComponent.kt.
  *
  * @author Rodrigo Cericatto
  * @since September 26, 2019

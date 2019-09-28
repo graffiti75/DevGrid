@@ -5,15 +5,13 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
-
     defaultConfig {
         applicationId APPLICATION_ID
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -34,17 +32,17 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${KOTLIN_VERSION}"
 
     // Support.
-    implementation "com.android.support:appcompat-v7:${APP_COMPAT_VERSION}"
-    implementation "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT_VERSION}"
-    implementation "com.android.support:recyclerview-v7:${APP_COMPAT_VERSION}"
+    implementation "androidx.appcompat:appcompat:${ANDROIDX_VERSION}"
+    implementation "androidx.constraintlayout:constraintlayout:${CONSTRAINT_LAYOUT_VERSION}"
+    implementation "androidx.recyclerview:recyclerview:${RECYCLER_VIEW_VERSION}"
 
     // LiveData.
-    implementation "android.arch.lifecycle:extensions:${ANDROID_ARCH_VERSION}"
-    kapt "android.arch.lifecycle:compiler:${ANDROID_ARCH_VERSION}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${ANDROID_ARCH_VERSION}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${ANDROID_ARCH_VERSION}"
 
     // Room.
-    implementation "android.arch.persistence.room:runtime:${ANDROID_ARCH_VERSION}"
-    kapt "android.arch.persistence.room:compiler:${ANDROID_ARCH_VERSION}"
+    implementation "androidx.room:room-runtime:${ANDROID_ARCH_VERSION}"
+    kapt "androidx.room:room-compiler:${ANDROID_ARCH_VERSION}"
 
     // Dagger.
     compileOnly "javax.annotation:jsr250-api:${JSR_VERSION}"
@@ -58,20 +56,23 @@ dependencies {
 
     // Retrofit.
     implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:converter-moshi:${MOSHI_VERSION}"
+    implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+
+    // RxJava2
     implementation "com.squareup.retrofit2:adapter-rxjava2:${ADAPTER_RX_JAVA_VERSION}"
     implementation "com.jakewharton.rxbinding:rxbinding:${RX_BINDING_VERSION}"
-    implementation "com.squareup.retrofit2:converter-moshi:${MOSHI_VERSION}"
     implementation "com.squareup.okhttp3:logging-interceptor:${LOGGING_INTERCEPTOR_VERSION}"
-    implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
 
     // Logging.
     implementation "com.jakewharton.timber:timber:${TIMBER_VERSION}"
 
     // Tests.
     testImplementation "junit:junit:${JUNIT_VERSION}"
-    androidTestImplementation "com.android.support.test:runner:${TEST_RUNNER_VERSION}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:${ESPRESSO_CORE_VERSION}"
-    androidTestImplementation "com.android.support.test:rules:${TEST_RULES_VERSION}"
-    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${MOCKITO_VERSION}"
+    androidTestImplementation "androidx.test:runner:${TEST_RUNNER_VERSION}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${ESPRESSO_CORE_VERSION}"
+    androidTestImplementation "androidx.test:rules:${TEST_RULES_VERSION}"
+    androidTestImplementation "com.jakewharton.espresso:okhttp3-idling-resource:${OKHTTP_IDLING_RESOURCE_VERSION}"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_MOCK_WEB_SERVER}"
+    androidTestImplementation "androidx.test.ext:junit:${JUNIT_EXT}"
 }

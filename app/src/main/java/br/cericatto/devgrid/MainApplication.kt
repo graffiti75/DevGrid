@@ -16,7 +16,7 @@ import timber.log.Timber
  * @author Rodrigo Cericatto
  * @since September 26, 2019
  */
-class MainApplication : Application() {
+open class MainApplication : Application() {
     lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreate() {

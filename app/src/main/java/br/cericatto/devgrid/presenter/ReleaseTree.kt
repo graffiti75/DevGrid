@@ -4,7 +4,7 @@ import android.util.Log
 import timber.log.Timber
 
 /**
- * ReleaseTree.java.
+ * ReleaseTree.kt.
  *
  * @author Rodrigo Cericatto
  * @since September 26, 2019

@@ -50,6 +50,10 @@ class MainActivity : BaseActivity() {
         moveTaskToBack(true)
     }
 
+    //--------------------------------------------------
+    // Activity Lifecycle
+    //--------------------------------------------------
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCustomToolbar(this, false)

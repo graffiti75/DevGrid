@@ -1,7 +1,7 @@
 package br.cericatto.devgrid
 
 /**
- * AppConfiguration.java.
+ * AppConfiguration.kt.
  *
  * @author Rodrigo Cericatto
  * @since September 26, 2019
@@ -13,10 +13,12 @@ object AppConfiguration {
     //----------------------------------------------
 
     const val BASE_URL = "https://api.github.com"
+    const val TEST_GITHUB_USER = "octocat"
+    const val TEST_PUBLIC_REPOS = 8
 
     // TODO: For safety reasons, not hardcoded values.
-    const val TEST_LOGIN = "<user_login>"
-    const val TEST_PASSWORD = "<user_password>"
+    const val TEST_LOGIN = "graffiti75"
+    const val TEST_PASSWORD = "z4pp41974Apostrophe*"
 
     //----------------------------------------------
     // Logging

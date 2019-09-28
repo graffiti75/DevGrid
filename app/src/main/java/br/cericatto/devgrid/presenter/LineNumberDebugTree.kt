@@ -3,7 +3,7 @@ package br.cericatto.devgrid.presenter
 import timber.log.Timber
 
 /**
- * LineNumberDebugTree.java.
+ * LineNumberDebugTree.kt.
  *
  * @author Rodrigo Cericatto
  * @since September 26, 2019
