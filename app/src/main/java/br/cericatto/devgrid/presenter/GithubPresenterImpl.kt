@@ -4,10 +4,10 @@ import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.view.MainActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,6 +20,7 @@ import javax.inject.Inject
 class GithubPresenterImpl @Inject constructor(private val activity: MainActivity): GithubPresenter {
 
     override fun initDataSet(service : ApiService) {
+        /*
         service.getRepos(AppConfiguration.getHeaderAuthentication()).enqueue(object : Callback<List<Repo>> {
             override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
                 if (response.isSuccessful) {
@@ -32,6 +33,25 @@ class GithubPresenterImpl @Inject constructor(private val activity: MainActivity
                 Timber.e(t, "Unable to load Repo data from API.")
             }
         })
+        */
+        val observable = service.getRepos(AppConfiguration.getHeaderAuthentication())
+        val subscription = observable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    showData(it)
+                    Timber.i("Repo data was loaded from API.")
+                },
+                {
+                    showErrorMessage()
+                    Timber.e(it, "Unable to load Repo data from API.")
+                },
+                // OnCompleted
+                {}
+            )
+        val composite = CompositeDisposable()
+        composite.add(subscription)
     }
 
     override fun showData(repos: List<Repo>) {

@@ -4,14 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.R
-import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.api.OkHttpProvider
 import br.cericatto.devgrid.presenter.getHeaderAuthentication
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_test.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -32,6 +31,7 @@ class TestActivity : AppCompatActivity() {
             .client(OkHttpProvider.instance)
             .build()
 
+        /*
         val githubService = retrofit.create(ApiService::class.java)
         githubService.getRepos(AppConfiguration.getHeaderAuthentication()).enqueue(object: Callback<List<Repo>> {
             override fun onFailure(call: Call<List<Repo>>, t: Throwable) {
@@ -45,5 +45,23 @@ class TestActivity : AppCompatActivity() {
                 }
             }
         })
+         */
+        val service = retrofit.create(ApiService::class.java)
+        val observable = service.getRepos(AppConfiguration.getHeaderAuthentication())
+        val subscription = observable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    github_user_id.text = it[0].id
+                },
+                {
+                    github_user_id.text = it.message
+                },
+                // OnCompleted
+                {}
+            )
+        val composite = CompositeDisposable()
+        composite.add(subscription)
     }
 }

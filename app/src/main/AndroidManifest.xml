@@ -21,7 +21,7 @@
         android:fullBackupContent="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".view.RetrofitActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,7 +31,7 @@
         <activity android:name=".view.TestActivity"
             android:label="@string/activity_test" />
 
-        <activity android:name=".view.MainActivity"
+        <activity android:name=".view.RetrofitActivity"
             android:label="@string/activity_retrofit" />
     </application>
 </manifest>
