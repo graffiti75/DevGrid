@@ -1,4 +1,4 @@
-package br.cericatto.devgrid.view
+package br.cericatto.devgrid.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -47,7 +47,7 @@ abstract class BaseActivity : AppCompatActivity() {
     //--------------------------------------------------
 
     fun setCustomToolbar(activity: AppCompatActivity, homeEnabled: Boolean) {
-        setSupportActionBar(id_toolbar as Toolbar)
+        setSupportActionBar(id_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(homeEnabled)
         id_toolbar.title = activity.title
     }

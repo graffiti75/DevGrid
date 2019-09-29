@@ -1,9 +1,11 @@
 package br.cericatto.devgrid.presenter
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.api.ApiService
-import br.cericatto.devgrid.view.MainActivity
+import br.cericatto.devgrid.view.activity.MainActivity
+import br.cericatto.devgrid.view.adapter.RepoAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -17,7 +19,17 @@ import javax.inject.Inject
  * @author Rodrigo Cericatto
  * @since September 26, 2019
  */
-class GithubPresenterImpl @Inject constructor(private val activity: MainActivity): GithubPresenter {
+class GithubPresenterImpl @Inject constructor(private val mActivity: MainActivity): GithubPresenter {
+
+    //--------------------------------------------------
+    // Attributes
+    //--------------------------------------------------
+
+    private lateinit var mAdapter: RepoAdapter
+
+    //--------------------------------------------------
+    // Override Methods
+    //--------------------------------------------------
 
     override fun initDataSet(service : ApiService) {
         /*
@@ -55,12 +67,22 @@ class GithubPresenterImpl @Inject constructor(private val activity: MainActivity
     }
 
     override fun showData(repos: List<Repo>) {
-        activity.id_text_view.text = repos.toString()
+        setAdapter(repos)
         Timber.d(repos.toString())
     }
 
     override fun showErrorMessage() {
-        activity.id_text_view.text = "Error in Retrofit."
+//        mActivity.id_text_view.text = "Error in Retrofit."
         Timber.e("Error in Retrofit.")
+    }
+
+    //--------------------------------------------------
+    // Private Methods
+    //--------------------------------------------------
+
+    private fun setAdapter(repos: List<Repo>) {
+        mAdapter = RepoAdapter(mActivity, repos)
+        mActivity.id_repos__recycler_view.adapter = mAdapter
+        mActivity.id_repos__recycler_view.layoutManager = LinearLayoutManager(mActivity)
     }
 }

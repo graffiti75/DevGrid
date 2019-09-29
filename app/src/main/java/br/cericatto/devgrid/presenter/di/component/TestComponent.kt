@@ -2,7 +2,7 @@ package br.cericatto.devgrid.presenter.di.component
 
 import br.cericatto.devgrid.presenter.di.module.TestModule
 import br.cericatto.devgrid.presenter.di.scope.PerActivity
-import br.cericatto.devgrid.view.TestActivity
+import br.cericatto.devgrid.view.activity.TestActivity
 import dagger.Component
 
 /**

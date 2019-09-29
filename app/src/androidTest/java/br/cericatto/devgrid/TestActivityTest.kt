@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.cericatto.devgrid.rules.OkHttpIdlingResourceRule
-import br.cericatto.devgrid.view.TestActivity
+import br.cericatto.devgrid.view.activity.TestActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,7 +21,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TestActivityTest {
     @get:Rule
-    var activityRule: ActivityTestRule<TestActivity> = ActivityTestRule(TestActivity::class.java)
+    var activityRule: ActivityTestRule<TestActivity> = ActivityTestRule(
+        TestActivity::class.java)
 
     @get:Rule
     var okHttpIdlingResourceRule = OkHttpIdlingResourceRule()

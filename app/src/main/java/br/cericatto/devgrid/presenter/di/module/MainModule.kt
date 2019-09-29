@@ -2,7 +2,7 @@ package br.cericatto.devgrid.presenter.di.module
 
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.di.scope.PerActivity
-import br.cericatto.devgrid.view.MainActivity
+import br.cericatto.devgrid.view.activity.MainActivity
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
