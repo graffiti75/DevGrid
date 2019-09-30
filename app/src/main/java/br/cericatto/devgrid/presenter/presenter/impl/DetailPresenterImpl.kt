@@ -37,10 +37,7 @@ class DetailPresenterImpl @Inject constructor(private val mActivity: DetailActiv
 
     override fun getExtras(): String {
         val extras = mActivity.intent.extras
-        if (extras != null) {
-
-            return extras.getString(AppConfiguration.REPO_NAME_EXTRA)
-        }
+        if (extras != null) return extras.getString(AppConfiguration.REPO_NAME_EXTRA)
         return ""
     }
 

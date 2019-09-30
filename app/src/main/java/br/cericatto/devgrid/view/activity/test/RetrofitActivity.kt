@@ -1,4 +1,4 @@
-package br.cericatto.devgrid.view.activity
+package br.cericatto.devgrid.view.activity.test
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

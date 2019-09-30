@@ -1,4 +1,4 @@
-package br.cericatto.devgrid.view.activity
+package br.cericatto.devgrid.view.activity.base
 
 import android.content.Intent
 import android.os.Bundle

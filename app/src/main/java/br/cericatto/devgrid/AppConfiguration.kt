@@ -27,6 +27,7 @@ object AppConfiguration {
     //----------------------------------------------
 
     const val REPO_NAME_EXTRA = "repo_name_extra"
+    const val QRCODE_LOGIN_EXTRA = "qrcode_login_extra"
 
     //----------------------------------------------
     // Logging

@@ -13,5 +13,9 @@ fun AppConfiguration.getHeaderAuthentication(): String {
     return "Basic $base64"
 }
 
-
-
+fun String.getHeaderAuthentication(password: String): String {
+    val parts = this.split("/")
+    val login = parts[parts.size - 1]
+    val base64 = "${login}:${password}".encodeBase64ToString()
+    return "Basic $base64"
+}

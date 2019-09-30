@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.cericatto.devgrid.rules.OkHttpIdlingResourceRule
-import br.cericatto.devgrid.view.activity.RetrofitActivity
+import br.cericatto.devgrid.view.activity.test.RetrofitActivity
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After

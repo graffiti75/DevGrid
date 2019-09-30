@@ -71,6 +71,10 @@ dependencies {
     // Logging.
     implementation "com.jakewharton.timber:timber:$TIMBER_VERSION"
 
+    // Google Vision.
+    implementation "com.google.android.gms:play-services:12.0.0"
+    implementation 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.3'
+
     // Tests.
     testImplementation "junit:junit:$JUNIT_VERSION"
     androidTestImplementation "androidx.test:runner:$TEST_RUNNER_VERSION"

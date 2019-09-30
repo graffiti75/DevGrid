@@ -11,6 +11,7 @@ import br.cericatto.devgrid.presenter.NavigationUtils
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.di.component.DaggerDetailComponent
 import br.cericatto.devgrid.presenter.di.module.DetailModule
+import br.cericatto.devgrid.view.activity.base.BaseActivity
 import javax.inject.Inject
 
 /**

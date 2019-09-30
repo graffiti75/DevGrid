@@ -34,8 +34,14 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
     // Override Methods
     //--------------------------------------------------
 
-    override fun initDataSet(service : ApiService) {
-        val observable = service.getRepos(AppConfiguration.getHeaderAuthentication())
+    override fun getExtras(): String {
+        val extras = mActivity.intent.extras
+        if (extras != null) return extras.getString(AppConfiguration.QRCODE_LOGIN_EXTRA)
+        return ""
+    }
+
+    override fun initDataSet(service : ApiService, login: String, password: String) {
+        val observable = service.getRepos(login.getHeaderAuthentication(password))
         val subscription = observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

@@ -10,7 +10,8 @@ import br.cericatto.devgrid.presenter.api.ApiService
  * @since September 26, 2019
  */
 interface MainPresenter {
-    fun initDataSet(service: ApiService)
+    fun getExtras(): String
+    fun initDataSet(service: ApiService, login: String, password: String)
     fun showData(repos: List<Repo>)
     fun showErrorMessage(error: String)
 }

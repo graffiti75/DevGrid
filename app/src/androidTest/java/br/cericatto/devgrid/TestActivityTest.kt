@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.cericatto.devgrid.rules.OkHttpIdlingResourceRule
-import br.cericatto.devgrid.view.activity.TestActivity
+import br.cericatto.devgrid.view.activity.test.TestActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

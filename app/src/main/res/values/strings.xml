@@ -1,16 +1,30 @@
 <resources>
     <string name="app_name">DevGrid</string>
 
+    <!-- Activity's -->
+
     <string name="activity_main">DevGrid Android Test</string>
+
+    <!-- Test Activity's -->
+
+    <string name="activity_qrcode">QrCode Test</string>
     <string name="activity_test">GetRepos Test</string>
     <string name="activity_retrofit">GetUser Test</string>
 
+    <!-- Errors -->
+
     <string name="error_loading_user">Error loading User.</string>
     <string name="repo_without_commits">This repository does not contains commits.</string>
+
+    <!-- Layout -->
 
     <string name="commit_sha">Commit SHA:</string>
     <string name="commit_name">Author Name:</string>
     <string name="commit_email">Author Email:</string>
     <string name="commit_date">Commit Date:</string>
     <string name="commit_message">Commit Message:</string>
+
+    <string name="qr_code_button">Scan Qr Code In Photo</string>
+    <string name="stop_camera_button">Stop Camera</string>
+    <string name="no_barcode">No Barcode</string>
 </resources>
