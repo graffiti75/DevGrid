@@ -30,11 +30,4 @@ object AppConfiguration {
     const val REPO_NAME_EXTRA = "repo_name_extra"
     const val QRCODE_LOGIN_EXTRA = "qrcode_login_extra"
     const val USER_PASSWORD_EXTRA = "user_password_extra"
-
-    //----------------------------------------------
-    // Logging
-    //----------------------------------------------
-
-    // Tag for common log output.
-    const val TAG = "dev_grid"
 }

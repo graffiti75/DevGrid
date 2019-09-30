@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.R
-import br.cericatto.devgrid.presenter.presenter.impl.DetailPresenterImpl
 import br.cericatto.devgrid.presenter.NavigationUtils
 import br.cericatto.devgrid.presenter.api.ApiService
+import br.cericatto.devgrid.presenter.checkIfHasNetwork
 import br.cericatto.devgrid.presenter.di.component.DaggerDetailComponent
 import br.cericatto.devgrid.presenter.di.module.DetailModule
+import br.cericatto.devgrid.presenter.extensions.showToast
+import br.cericatto.devgrid.presenter.presenter.impl.DetailPresenterImpl
 import br.cericatto.devgrid.view.activity.base.BaseActivity
 import javax.inject.Inject
 
@@ -66,9 +67,7 @@ class DetailActivity : BaseActivity() {
 
         val repoName = mPresenter.getExtras()
         setCustomToolbar(true, repoName)
-
-        val app: MainApplication = application as MainApplication
-        mPresenter.initDataSet(mApiService, app.login, app.password, repoName)
+        getData(repoName)
     }
 
     //--------------------------------------------------
@@ -87,5 +86,15 @@ class DetailActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    //--------------------------------------------------
+    // Methods
+    //--------------------------------------------------
+
+    private fun getData(repoName: String) {
+        val app: MainApplication = application as MainApplication
+        if (checkIfHasNetwork()) mPresenter.initDataSet(mApiService, app.login, app.password, repoName)
+        else showToast(R.string.no_internet)
     }
 }

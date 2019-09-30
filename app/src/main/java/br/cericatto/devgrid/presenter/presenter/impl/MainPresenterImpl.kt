@@ -4,10 +4,14 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.MainApplication
+import br.cericatto.devgrid.R
 import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.api.ApiService
+import br.cericatto.devgrid.presenter.extensions.openActivity
+import br.cericatto.devgrid.presenter.extensions.showToast
 import br.cericatto.devgrid.presenter.getHeaderAuthentication
 import br.cericatto.devgrid.presenter.presenter.MainPresenter
+import br.cericatto.devgrid.view.activity.LoginActivity
 import br.cericatto.devgrid.view.activity.MainActivity
 import br.cericatto.devgrid.view.adapter.RepoAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,12 +48,11 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
             password = extras.getString(AppConfiguration.USER_PASSWORD_EXTRA)
         }
         val app: MainApplication = mActivity.application as MainApplication
-        app.login = login
         app.password = password
         return Pair(login, password)
     }
 
-    override fun initDataSet(service : ApiService, login: String, password: String) {
+    override fun initDataSet(context: MainActivity, service : ApiService, login: String, password: String) {
         val observable = service.getRepos(login.getHeaderAuthentication(password))
         val subscription = observable
             .subscribeOn(Schedulers.io())
@@ -60,10 +63,16 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
                     Timber.i("getRepos() -> $it")
                 },
                 {
-                    it.message?.let { errorMessage -> showErrorMessage(errorMessage) }
+                    it.message?.let { errorMessage ->
+                        showErrorMessage(errorMessage)
+                        context.showToast(context.getString(R.string.activity_login__authentication_error))
+                        backToLoginScreen(context)
+                    }
                 },
                 // OnCompleted
-                {}
+                {
+                    Timber.i("getRepos() -> At OnCompleted.")
+                }
             )
         val composite = CompositeDisposable()
         composite.add(subscription)
@@ -89,5 +98,9 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
         mAdapter = RepoAdapter(mActivity, repos)
         mActivity.id_activity_main__recycler_view.adapter = mAdapter
         mActivity.id_activity_main__recycler_view.layoutManager = LinearLayoutManager(mActivity)
+    }
+
+    private fun backToLoginScreen(context: MainActivity) {
+        context.openActivity(context, LoginActivity::class.java)
     }
 }

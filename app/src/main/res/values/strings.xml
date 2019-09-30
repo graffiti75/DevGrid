@@ -14,6 +14,7 @@
 
     <string name="error_loading_user">Error loading User.</string>
     <string name="empty_commits">This repository does not contains commits.</string>
+    <string name="no_internet">No network connection. Please try again later.</string>
 
     <!-- Layout -->
 
@@ -25,12 +26,14 @@
 
     <string name="activity_qrcode__qrcode_button">Read QrCode</string>
 
-    <string name="activity_camera__no_barcode">No Barcode</string>
+    <string name="activity_camera__no_barcode">Waiting to read QrCode…</string>
     <string name="activity_camera__opening_login">Please type your password:</string>
     <string name="activity_camera__wrong_url">Please provide a valid Github User url.</string>
 
+    <string name="activity_login__info">Login: %1$s</string>
     <string name="activity_login__button">Login</string>
     <string name="activity_login__password">Password</string>
     <string name="activity_login__password_hint">Please type your Github password</string>
     <string name="activity_login__empty_password">Please type a valid password.</string>
+    <string name="activity_login__authentication_error">Login or Password incorrect. Please, try again.</string>
 </resources>

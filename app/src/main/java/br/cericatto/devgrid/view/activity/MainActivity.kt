@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.presenter.api.ApiService
+import br.cericatto.devgrid.presenter.checkIfHasNetwork
 import br.cericatto.devgrid.presenter.di.component.DaggerMainComponent
 import br.cericatto.devgrid.presenter.di.module.MainModule
+import br.cericatto.devgrid.presenter.extensions.showToast
 import br.cericatto.devgrid.presenter.presenter.impl.MainPresenterImpl
 import br.cericatto.devgrid.view.activity.base.BaseActivity
 import javax.inject.Inject
@@ -58,8 +60,16 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCustomToolbar(false, getString(R.string.activity_main))
+        getData()
+    }
 
+    //--------------------------------------------------
+    // Methods
+    //--------------------------------------------------
+
+    private fun getData() {
         val (login, password) = mPresenter.getExtras()
-        mPresenter.initDataSet(mApiService, login, password)
+        if (checkIfHasNetwork()) mPresenter.initDataSet(this, mApiService, login, password)
+        else showToast(R.string.no_internet)
     }
 }

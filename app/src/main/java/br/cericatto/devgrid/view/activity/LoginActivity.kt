@@ -3,6 +3,7 @@ package br.cericatto.devgrid.view.activity
 import android.content.Intent
 import android.os.Bundle
 import br.cericatto.devgrid.AppConfiguration
+import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.presenter.extensions.openActivityExtras
 import br.cericatto.devgrid.presenter.extensions.showToast
@@ -47,17 +48,24 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setCustomToolbar(false)
-
-        mLogin = getExtras()
-        activity_login__signup_button.setOnClickListener {
-            performLogin()
-        }
+        setCustomToolbar(true)
+        getLogin()
     }
 
     //--------------------------------------------------
     // Methods
     //--------------------------------------------------
+
+    private fun getLogin() {
+        mLogin = getExtras().getLoginFromUrl()
+        activity_login__login_text_view.text = getString(R.string.activity_login__info, mLogin)
+        val app : MainApplication = application as MainApplication
+        app.login = mLogin
+
+        activity_login__signup_button.setOnClickListener {
+            performLogin()
+        }
+    }
 
     private fun getExtras(): String {
         val extras = intent.extras

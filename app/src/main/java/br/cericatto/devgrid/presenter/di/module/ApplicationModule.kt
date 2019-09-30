@@ -3,6 +3,7 @@ package br.cericatto.devgrid.presenter.di.module
 import android.content.Context
 import br.cericatto.devgrid.BuildConfig
 import br.cericatto.devgrid.MainApplication
+import br.cericatto.devgrid.presenter.checkIfHasNetwork
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
@@ -107,7 +108,7 @@ class ApplicationModule(private val mContext: Context, private val mBaseUrl: Str
             @Throws(IOException::class)
             override fun intercept(chain: Interceptor.Chain): Response {
                 var request = chain.request()
-                if (!(mContext.applicationContext as MainApplication).checkIfHasNetwork()) {
+                if (!mContext.checkIfHasNetwork()) {
                     val cacheControl = CacheControl.Builder()
                         .maxStale(7, TimeUnit.DAYS)
                         .build()
