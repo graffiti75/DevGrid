@@ -46,11 +46,11 @@ class CommitAdapter(activity: DetailActivity, list: List<GithubCommit>) : Recycl
     //--------------------------------------------------
 
     private fun setTexts(view: View, commit: GithubCommit) {
-        view.id_commit_name__text_view.text = commit.commit.author.name
-        view.id_commit_email__text_view.text = commit.commit.author.email
-        view.id_commit_date__text_view.text = commit.commit.author.date
-        view.id_commit_message__text_view.text = commit.commit.message
-        view.id_commit_sha__text_view.text = commit.sha
+        view.id_item_commit__name_text_view.text = commit.commit.author.name
+        view.id_item_commit__email_text_view.text = commit.commit.author.email
+        view.id_item_commit__date_text_view.text = commit.commit.author.date
+        view.id_item_commit__message_text_view.text = commit.commit.message
+        view.id_item_commit__sha_text_view.text = commit.sha
     }
 
     //--------------------------------------------------

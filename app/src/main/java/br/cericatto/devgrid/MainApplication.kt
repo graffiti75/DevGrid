@@ -18,6 +18,8 @@ import timber.log.Timber
  */
 open class MainApplication : Application() {
     lateinit var applicationComponent: ApplicationComponent
+    lateinit var login: String
+    lateinit var password: String
 
     override fun onCreate() {
         super.onCreate()

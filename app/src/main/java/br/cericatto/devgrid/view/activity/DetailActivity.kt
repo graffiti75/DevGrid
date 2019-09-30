@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import br.cericatto.devgrid.AppConfiguration
+import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.presenter.presenter.impl.DetailPresenterImpl
 import br.cericatto.devgrid.presenter.NavigationUtils
@@ -65,7 +66,9 @@ class DetailActivity : BaseActivity() {
 
         val repoName = mPresenter.getExtras()
         setCustomToolbar(true, repoName)
-        mPresenter.initDataSet(mApiService, AppConfiguration.TEST_LOGIN, repoName)
+
+        val app: MainApplication = application as MainApplication
+        mPresenter.initDataSet(mApiService, app.login, app.password, repoName)
     }
 
     //--------------------------------------------------

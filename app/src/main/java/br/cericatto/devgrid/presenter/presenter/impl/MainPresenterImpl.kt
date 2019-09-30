@@ -3,6 +3,7 @@ package br.cericatto.devgrid.presenter.presenter.impl
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.cericatto.devgrid.AppConfiguration
+import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.getHeaderAuthentication
@@ -34,10 +35,18 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
     // Override Methods
     //--------------------------------------------------
 
-    override fun getExtras(): String {
+    override fun getExtras(): Pair<String, String> {
         val extras = mActivity.intent.extras
-        if (extras != null) return extras.getString(AppConfiguration.QRCODE_LOGIN_EXTRA)
-        return ""
+        var login = ""
+        var password = ""
+        if (extras != null) {
+            login = extras.getString(AppConfiguration.QRCODE_LOGIN_EXTRA)
+            password = extras.getString(AppConfiguration.USER_PASSWORD_EXTRA)
+        }
+        val app: MainApplication = mActivity.application as MainApplication
+        app.login = login
+        app.password = password
+        return Pair(login, password)
     }
 
     override fun initDataSet(service : ApiService, login: String, password: String) {
@@ -74,11 +83,11 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
     //--------------------------------------------------
 
     private fun setAdapter(repos: List<Repo>) {
-        mActivity.id_main__loading.visibility = View.GONE
-        mActivity.id_repos__recycler_view.visibility = View.VISIBLE
+        mActivity.id_activity_main__loading.visibility = View.GONE
+        mActivity.id_activity_main__recycler_view.visibility = View.VISIBLE
 
         mAdapter = RepoAdapter(mActivity, repos)
-        mActivity.id_repos__recycler_view.adapter = mAdapter
-        mActivity.id_repos__recycler_view.layoutManager = LinearLayoutManager(mActivity)
+        mActivity.id_activity_main__recycler_view.adapter = mAdapter
+        mActivity.id_activity_main__recycler_view.layoutManager = LinearLayoutManager(mActivity)
     }
 }

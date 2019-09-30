@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.model.Repo
-import br.cericatto.devgrid.presenter.extensions.openActivityExtras
+import br.cericatto.devgrid.presenter.extensions.openActivityExtra
 import br.cericatto.devgrid.view.activity.DetailActivity
 import br.cericatto.devgrid.view.activity.MainActivity
 import kotlinx.android.synthetic.main.item_repo.view.*
@@ -49,9 +49,9 @@ class RepoAdapter(activity: MainActivity, list: List<Repo>) : RecyclerView.Adapt
     //--------------------------------------------------
 
     private fun setTitle(view: View, repo: Repo) {
-        view.id_repo_title__text_view.text = repo.name
-        view.id_repo_title__text_view.setOnClickListener {
-            mActivity.openActivityExtras(mActivity, DetailActivity::class.java,
+        view.id_item_repo__title_text_view.text = repo.name
+        view.id_item_repo__title_text_view.setOnClickListener {
+            mActivity.openActivityExtra(mActivity, DetailActivity::class.java,
                 AppConfiguration.REPO_NAME_EXTRA, repo.name)
         }
     }

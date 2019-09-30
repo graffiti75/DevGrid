@@ -12,7 +12,7 @@
         android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/id_commits__recycler_view"
+        android:id="@+id/id_activity_detail__recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,19 +24,19 @@
         android:visibility="gone"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/id_empty__text_view"
+        android:id="@+id/id_activity_detail__empty_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:textColor="@color/black"
-        android:text="@string/repo_without_commits"
+        android:text="@string/empty_commits"
         android:gravity="center"
         android:textSize="20sp"
         android:typeface="monospace"
         android:visibility="gone" />
 
     <include
-        android:id="@+id/id_detail__loading"
+        android:id="@+id/id_activity_detail__loading"
         layout="@layout/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

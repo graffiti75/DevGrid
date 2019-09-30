@@ -46,7 +46,7 @@ class QrCodeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setCustomToolbar(false, getString(R.string.activity_qrcode))
 
-        id_qr_code__button.setOnClickListener {
+        id_activity_qrcode__button.setOnClickListener {
             try {
                 val barCodes = initBarCodeDetection()
                 // Check if at least one barcode was detected.
@@ -74,12 +74,12 @@ class QrCodeActivity : BaseActivity() {
     private fun checkBarCodeDetection(barCodes: SparseArray<Barcode>) {
         if (barCodes.size() != 0) {
             // Display the QR code's message.
-            id_qr_code__text_view.text = "QR CODE Data: " + barCodes.valueAt(0).displayValue
+            id_activity_qrcode__text_view.text = "QR CODE Data: " + barCodes.valueAt(0).displayValue
             // Display QR code image to ImageView.
 //            id_qr_code__image_view.setImageBitmap(myQRCode)
         } else {
-            id_qr_code__text_view.text = "No QR Code found!"
-            id_qr_code__text_view.setTextColor(Color.RED)
+            id_activity_qrcode__text_view.text = "No QR Code found!"
+            id_activity_qrcode__text_view.setTextColor(Color.RED)
         }
     }
 }

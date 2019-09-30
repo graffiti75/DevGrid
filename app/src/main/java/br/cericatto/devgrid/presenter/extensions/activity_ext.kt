@@ -21,9 +21,24 @@ fun Context.openActivity(activity: Activity, clazz: Class<*>) {
     NavigationUtils.animate(activity, NavigationUtils.Animation.GO)
 }
 
-fun Context.openActivityExtras(activity: Activity, clazz: Class<*>, key: String, value: Any) {
+fun Context.openActivityExtra(activity: Activity, clazz: Class<*>, key: String, value: Any) {
     val intent = Intent(activity, clazz)
     val extras = getExtra(Bundle(), key, value)
+    intent.putExtras(extras)
+
+    activity.startActivity(intent)
+    NavigationUtils.animate(activity, NavigationUtils.Animation.GO)
+}
+
+fun Context.openActivityExtras(activity: Activity, clazz: Class<*>, keys: Array<String>, values: Array<Any>) {
+    val intent = Intent(activity, clazz)
+    var extras = Bundle()
+    val size = keys.size
+    for (i in 0 until size) {
+        val key = keys[i]
+        val value = values[i]
+        extras = getExtra(extras, key, value)
+    }
     intent.putExtras(extras)
 
     activity.startActivity(intent)

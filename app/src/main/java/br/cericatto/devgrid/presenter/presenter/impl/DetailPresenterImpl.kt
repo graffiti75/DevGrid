@@ -3,6 +3,7 @@ package br.cericatto.devgrid.presenter.presenter.impl
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.cericatto.devgrid.AppConfiguration
+import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.model.commit.GithubCommit
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.getHeaderAuthentication
@@ -41,9 +42,9 @@ class DetailPresenterImpl @Inject constructor(private val mActivity: DetailActiv
         return ""
     }
 
-    override fun initDataSet(service : ApiService, userLogin: String, repoName: String) {
+    override fun initDataSet(service : ApiService, userLogin: String, password: String, repoName: String) {
         val observable = service.getCommits(
-            AppConfiguration.getHeaderAuthentication(), userLogin, repoName)
+            userLogin.getHeaderAuthentication(password), userLogin, repoName)
         val subscription = observable
             .subscribeOn(Schedulers.io())
             // Be notified on the main thread
@@ -86,18 +87,18 @@ class DetailPresenterImpl @Inject constructor(private val mActivity: DetailActiv
     }
 
     private fun setAdapter(commits: List<GithubCommit>) {
-        mActivity.id_detail__loading.visibility = View.GONE
-        mActivity.id_commits__recycler_view.visibility = View.VISIBLE
-        mActivity.id_empty__text_view.visibility = View.GONE
+        mActivity.id_activity_detail__loading.visibility = View.GONE
+        mActivity.id_activity_detail__recycler_view.visibility = View.VISIBLE
+        mActivity.id_activity_detail__empty_text_view.visibility = View.GONE
 
         mAdapter = CommitAdapter(mActivity, commits)
-        mActivity.id_commits__recycler_view.adapter = mAdapter
-        mActivity.id_commits__recycler_view.layoutManager = LinearLayoutManager(mActivity)
+        mActivity.id_activity_detail__recycler_view.adapter = mAdapter
+        mActivity.id_activity_detail__recycler_view.layoutManager = LinearLayoutManager(mActivity)
     }
 
     private fun setEmptyTextView() {
-        mActivity.id_detail__loading.visibility = View.GONE
-        mActivity.id_commits__recycler_view.visibility = View.GONE
-        mActivity.id_empty__text_view.visibility = View.VISIBLE
+        mActivity.id_activity_detail__loading.visibility = View.GONE
+        mActivity.id_activity_detail__recycler_view.visibility = View.GONE
+        mActivity.id_activity_detail__empty_text_view.visibility = View.VISIBLE
     }
 }

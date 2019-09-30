@@ -5,7 +5,8 @@ import android.graphics.PointF
 import android.os.Bundle
 import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.R
-import br.cericatto.devgrid.presenter.extensions.openActivityExtras
+import br.cericatto.devgrid.presenter.extensions.openActivityExtra
+import br.cericatto.devgrid.presenter.extensions.showToast
 import br.cericatto.devgrid.view.activity.base.BaseActivity
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView
 import kotlinx.android.synthetic.main.activity_camera.*
@@ -53,12 +54,12 @@ class CameraActivity : BaseActivity(), QRCodeReaderView.OnQRCodeReadListener {
 
     override fun onResume() {
         super.onResume()
-        id_qr_code__surface_view.startCamera()
+        id_activity_camera__qrcode_reader_view.startCamera()
     }
 
     override fun onPause() {
         super.onPause()
-        id_qr_code__surface_view.stopCamera()
+        id_activity_camera__qrcode_reader_view.stopCamera()
     }
 
     /*
@@ -81,13 +82,13 @@ class CameraActivity : BaseActivity(), QRCodeReaderView.OnQRCodeReadListener {
 
         // TODO: Reminder -> https://github.com/dlazaro66/QRCodeReaderView
 
-        id_qr_code__surface_view.setOnQRCodeReadListener(this)
+        id_activity_camera__qrcode_reader_view.setOnQRCodeReadListener(this)
 
         // Use this function to enable/disable decoding.
-        id_qr_code__surface_view.setQRDecodingEnabled(true)
+        id_activity_camera__qrcode_reader_view.setQRDecodingEnabled(true)
 
         // Use this function to change the autofocus interval (default is 5 secs).
-        id_qr_code__surface_view.setAutofocusInterval(2000L)
+        id_activity_camera__qrcode_reader_view.setAutofocusInterval(2000L)
 
         // Use this function to enable/disable Torch.
 //        id_qr_code__surface_view.setTorchEnabled(true)
@@ -96,9 +97,9 @@ class CameraActivity : BaseActivity(), QRCodeReaderView.OnQRCodeReadListener {
 //        id_qr_code__surface_view.setFrontCamera()
 
         // Use this function to set back camera preview.
-        id_qr_code__surface_view.setBackCamera()
+        id_activity_camera__qrcode_reader_view.setBackCamera()
 
-        id_qr_code__surface_view.startCamera()
+        id_activity_camera__qrcode_reader_view.startCamera()
     }
 
     /*
@@ -152,11 +153,14 @@ class CameraActivity : BaseActivity(), QRCodeReaderView.OnQRCodeReadListener {
     //--------------------------------------------------
 
     override fun onQRCodeRead(text: String?, points: Array<out PointF>?) {
-        id_qr_code_launcher__text_view.text = text
+        id_activity_camera__qrcode_text_view.text = text
         text?.let {
-            openActivityExtras(this, MainActivity::class.java,
-                AppConfiguration.QRCODE_LOGIN_EXTRA, it
-            )
+            if (text.contains(AppConfiguration.BASE_QRCODE_URL)) {
+                showToast(R.string.activity_camera__opening_login)
+                openActivityExtra(this, LoginActivity::class.java,
+                    AppConfiguration.QRCODE_LOGIN_EXTRA, it)
+            } else
+                showToast(R.string.activity_camera__wrong_url)
         }
     }
 }

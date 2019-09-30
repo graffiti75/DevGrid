@@ -39,6 +39,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
     implementation "androidx.recyclerview:recyclerview:$ANDROIDX_VERSION"
     implementation "androidx.cardview:cardview:$CARD_VIEW_VERSION"
+    implementation "com.google.android.material:material:$MATERIAL_VERSION"
 
     // LiveData.
     implementation "androidx.lifecycle:lifecycle-extensions:$ANDROID_ARCH_VERSION"
@@ -72,8 +73,8 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$TIMBER_VERSION"
 
     // Google Vision.
-    implementation "com.google.android.gms:play-services:12.0.0"
-    implementation 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.3'
+    implementation "com.google.android.gms:play-services:$GMS_PLAY_SERVICES_VERSION"
+    implementation "com.dlazaro66.qrcodereaderview:qrcodereaderview:$QRCODE_VIEWER_VERSION"
 
     // Tests.
     testImplementation "junit:junit:$JUNIT_VERSION"

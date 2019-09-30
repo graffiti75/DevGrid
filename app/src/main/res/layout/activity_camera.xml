@@ -14,13 +14,13 @@
 <!--        android:layout_height="match_parent">-->
 
 <!--        <SurfaceView-->
-<!--            android:id="@+id/id_qr_code__surface_view"-->
+<!--            android:id="@+id/id_activity_camera__surface_view"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
 <!--            android:layout_weight="1"/>-->
 
 <!--        <TextView-->
-<!--            android:id="@+id/id_qr_code_launcher__text_view"-->
+<!--            android:id="@+id/id_activity_camera__text_view"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:padding="5dp"-->
@@ -34,18 +34,18 @@
         android:layout_height="match_parent">
 
         <com.dlazaro66.qrcodereaderview.QRCodeReaderView
-            android:id="@+id/id_qr_code__surface_view"
+            android:id="@+id/id_activity_camera__qrcode_reader_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/id_qr_code_launcher__text_view"
+            android:id="@+id/id_activity_camera__qrcode_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="@string/no_barcode"
+            android:text="@string/activity_camera__no_barcode"
             android:textColor="@color/grey_500"
             android:textSize="20sp" />
     </FrameLayout>
