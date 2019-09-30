@@ -41,7 +41,20 @@
 
     <!--=============== SCREENS ===============-->
 
-    <style name="Separator">
-        <item name="android:background">@color/orange_500</item>
+    <style name="Commit_BaseTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="Commit_H1_TextView" parent="Commit_BaseTextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Commit_H2_TextView" parent="Commit_BaseTextView">
+        <item name="android:textSize">10sp</item>
     </style>
 </resources>

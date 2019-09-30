@@ -11,7 +11,6 @@ import br.cericatto.devgrid.presenter.api.ApiService
 interface DetailPresenter {
     fun getExtras(): String
     fun initDataSet(service: ApiService, userLogin: String, repoName: String)
-//    fun showData(repos: List<GithubCommit>)
     fun showData()
-    fun showErrorMessage()
+    fun showErrorMessage(error: String)
 }

@@ -32,6 +32,7 @@
         android:text="@string/repo_without_commits"
         android:gravity="center"
         android:textSize="20sp"
+        android:typeface="monospace"
         android:visibility="gone" />
 
     <include

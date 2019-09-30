@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.model.commit.GithubCommit
 import br.cericatto.devgrid.view.activity.DetailActivity
-import kotlinx.android.synthetic.main.item_repo.view.*
+import kotlinx.android.synthetic.main.item_commit.view.*
 
 /**
  * CommitAdapter.kt.
@@ -30,13 +30,13 @@ class CommitAdapter(activity: DetailActivity, list: List<GithubCommit>) : Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommitViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return CommitViewHolder(inflater.inflate(R.layout.item_repo, parent, false))
+        return CommitViewHolder(inflater.inflate(R.layout.item_commit, parent, false))
     }
 
     override fun onBindViewHolder(holder: CommitViewHolder, position: Int) {
         var commit = mCommitList[position]
         var view = holder.itemView
-        setTitle(view, commit)
+        setTexts(view, commit)
     }
 
     override fun getItemCount(): Int = mCommitList.size
@@ -45,8 +45,12 @@ class CommitAdapter(activity: DetailActivity, list: List<GithubCommit>) : Recycl
     // Methods
     //--------------------------------------------------
 
-    private fun setTitle(view: View, commit: GithubCommit) {
-        view.id_repo_title__text_view.text = commit.commit.message
+    private fun setTexts(view: View, commit: GithubCommit) {
+        view.id_commit_name__text_view.text = commit.commit.author.name
+        view.id_commit_email__text_view.text = commit.commit.author.email
+        view.id_commit_date__text_view.text = commit.commit.author.date
+        view.id_commit_message__text_view.text = commit.commit.message
+        view.id_commit_sha__text_view.text = commit.sha
     }
 
     //--------------------------------------------------

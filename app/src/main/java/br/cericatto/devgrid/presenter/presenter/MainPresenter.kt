@@ -12,5 +12,5 @@ import br.cericatto.devgrid.presenter.api.ApiService
 interface MainPresenter {
     fun initDataSet(service: ApiService)
     fun showData(repos: List<Repo>)
-    fun showErrorMessage()
+    fun showErrorMessage(error: String)
 }

@@ -56,7 +56,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setCustomToolbar(false)
+        setCustomToolbar(false, getString(R.string.activity_main))
         mPresenter.initDataSet(mApiService)
     }
 }

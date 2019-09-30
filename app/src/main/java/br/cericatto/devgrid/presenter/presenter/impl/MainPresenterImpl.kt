@@ -22,8 +22,7 @@ import javax.inject.Inject
  * @author Rodrigo Cericatto
  * @since September 26, 2019
  */
-class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity):
-    MainPresenter {
+class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity): MainPresenter {
 
     //--------------------------------------------------
     // Attributes
@@ -43,11 +42,10 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
             .subscribe(
                 {
                     showData(it)
-                    Timber.i("Repo data was loaded from API.")
+                    Timber.i("getRepos() -> $it")
                 },
                 {
-                    showErrorMessage()
-                    Timber.e(it, "Unable to load Repo data from API.")
+                    it.message?.let { errorMessage -> showErrorMessage(errorMessage) }
                 },
                 // OnCompleted
                 {}
@@ -61,9 +59,8 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
         Timber.d(repos.toString())
     }
 
-    override fun showErrorMessage() {
-//        mActivity.id_text_view.text = "Error in Retrofit."
-        Timber.e("Error in Retrofit.")
+    override fun showErrorMessage(error: String) {
+        Timber.e(error)
     }
 
     //--------------------------------------------------

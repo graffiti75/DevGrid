@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">DevGrid</string>
 
-    <string name="activity_detail">Commits</string>
-
-    <string name="activity_test">Get Repos Test</string>
-    <string name="activity_retrofit">Get User Test</string>
+    <string name="activity_main">DevGrid Android Test</string>
+    <string name="activity_test">GetRepos Test</string>
+    <string name="activity_retrofit">GetUser Test</string>
 
     <string name="error_loading_user">Error loading User.</string>
     <string name="repo_without_commits">This repository does not contains commits.</string>
+
+    <string name="commit_sha">Commit SHA:</string>
+    <string name="commit_name">Author Name:</string>
+    <string name="commit_email">Author Email:</string>
+    <string name="commit_date">Commit Date:</string>
+    <string name="commit_message">Commit Message:</string>
 </resources>

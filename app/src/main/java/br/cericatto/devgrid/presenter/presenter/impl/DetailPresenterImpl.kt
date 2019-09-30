@@ -55,11 +55,10 @@ class DetailPresenterImpl @Inject constructor(private val mActivity: DetailActiv
             .subscribe(
                 {
                     concatData(it)
-                    Timber.i("Repo data was loaded from API.")
+                    Timber.i("getCommits() -> $it")
                 },
                 {
-                    showErrorMessage()
-                    Timber.e(it, "Unable to load Repo data from API.")
+                    it.message?.let { errorMessage -> showErrorMessage(errorMessage) }
                 },
                 // OnCompleted
                 {
@@ -77,15 +76,8 @@ class DetailPresenterImpl @Inject constructor(private val mActivity: DetailActiv
         else setAdapter(mData)
     }
 
-    /*
-    override fun showData(repos: List<GithubCommit>) {
-        if (repos.isEmpty()) setEmptyTextView()
-        else setAdapter(repos)
-    }
-    */
-
-    override fun showErrorMessage() {
-        Timber.e("Error in Retrofit.")
+    override fun showErrorMessage(error: String) {
+        Timber.e(error)
     }
 
     //--------------------------------------------------
