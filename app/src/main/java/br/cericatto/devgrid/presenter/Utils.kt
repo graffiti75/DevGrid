@@ -1,9 +1,13 @@
 package br.cericatto.devgrid.presenter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import br.cericatto.devgrid.AppConfiguration
 
 /**
@@ -63,4 +67,10 @@ fun Context.checkIfHasNetwork(): Boolean {
         }
     }
     return result
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("text_formatted")
+fun setText(textView: TextView, name: String) {
+    textView.text = "[$name]"
 }
