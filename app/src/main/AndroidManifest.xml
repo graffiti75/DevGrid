@@ -20,6 +20,7 @@
         android:theme="@style/AppTheme"
         android:name=".MainApplication"
         android:fullBackupContent="true"
+        android:windowSoftInputMode="adjustPan"
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- QrCode -->

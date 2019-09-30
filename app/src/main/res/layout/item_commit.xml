@@ -1,99 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/igCardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:elevation="10dp"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="commit"
+            type="br.cericatto.devgrid.model.commit.GithubCommit" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_800_transparent_35">
+        android:background="@color/grey_800_transparent_60"
+        android:orientation="vertical">
 
-        <!-- SHA -->
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/Commit_H1_TextView"
-            android:id="@+id/id_item_commit__sha_label_text_view"
-            android:typeface="monospace"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/item_commit__commit_sha" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:elevation="20dp"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__sha_text_view"
-            style="@style/Commit_H2_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__sha_label_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Octocat" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_800_transparent_35">
 
-        <!-- Name -->
+                <!-- SHA -->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/Commit_H1_TextView"
-            android:id="@+id/id_item_commit__name_label_text_view"
-            android:typeface="monospace"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__sha_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/item_commit__commit_name" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__sha_label_text_view"
+                    style="@style/Commit_H1_TextView"
+                    android:text="@string/item_commit__commit_sha"
+                    android:typeface="monospace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__name_text_view"
-            style="@style/Commit_H2_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__name_label_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Octocat" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__sha_text_view"
+                    style="@style/Commit_H2_TextView"
+                    android:text="@{commit.sha}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__sha_label_text_view"
+                    tools:text="@string/item_commit__sha_message__hint" />
 
-        <!-- Email -->
+                <!-- Name -->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__email_label_text_view"
-            style="@style/Commit_H1_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__name_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/item_commit__commit_email" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__name_label_text_view"
+                    style="@style/Commit_H1_TextView"
+                    android:text="@string/item_commit__commit_name"
+                    android:typeface="monospace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__sha_text_view" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__email_text_view"
-            style="@style/Commit_H2_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__email_label_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Octocat" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__name_text_view"
+                    style="@style/Commit_H2_TextView"
+                    android:text="@{commit.commit.author.name}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__name_label_text_view"
+                    tools:text="@string/item_commit__name_message__hint" />
 
-        <!-- Date -->
+                <!-- Email -->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__date_label_text_view"
-            style="@style/Commit_H1_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__email_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/item_commit__commit_date" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__email_label_text_view"
+                    style="@style/Commit_H1_TextView"
+                    android:text="@string/item_commit__commit_email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__name_text_view" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__date_text_view"
-            style="@style/Commit_H2_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__date_label_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Octocat" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__email_text_view"
+                    style="@style/Commit_H2_TextView"
+                    android:text="@{commit.commit.author.email}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__email_label_text_view"
+                    tools:text="@string/item_commit__email_message__hint" />
 
-        <!-- Message -->
+                <!-- Date -->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__message_label_text_view"
-            style="@style/Commit_H1_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__date_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/item_commit__commit_message" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__date_label_text_view"
+                    style="@style/Commit_H1_TextView"
+                    android:text="@string/item_commit__commit_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__email_text_view" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/id_item_commit__message_text_view"
-            style="@style/Commit_H2_TextView"
-            app:layout_constraintTop_toBottomOf="@id/id_item_commit__message_label_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Octocat" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__date_text_view"
+                    style="@style/Commit_H2_TextView"
+                    android:text="@{commit.commit.author.date}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__date_label_text_view"
+                    tools:text="@string/item_commit__date_message__hint" />
+
+                <!-- Message -->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__message_label_text_view"
+                    style="@style/Commit_H1_TextView"
+                    android:text="@string/item_commit__commit_message"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__date_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_item_commit__message_text_view"
+                    style="@style/Commit_H2_TextView"
+                    android:text="@{commit.commit.message}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_item_commit__message_label_text_view"
+                    tools:text="@string/item_commit__commit_message__hint" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

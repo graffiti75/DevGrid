@@ -24,6 +24,12 @@
     <string name="item_commit__commit_date">Commit Date:</string>
     <string name="item_commit__commit_message">Commit Message:</string>
 
+    <string name="item_commit__sha_message__hint">20d98a502637587b881ee3b18cb7183b56bbbbec</string>
+    <string name="item_commit__name_message__hint">Octopus Octocat</string>
+    <string name="item_commit__email_message__hint">octocat@macbook-pro.local</string>
+    <string name="item_commit__date_message__hint">2018-12-31T00:00:00Z</string>
+    <string name="item_commit__commit_message__hint">First commit.</string>
+
     <string name="activity_qrcode__qrcode_button">Read QrCode</string>
 
     <string name="activity_camera__no_barcode">Waiting to read QrCode…</string>
