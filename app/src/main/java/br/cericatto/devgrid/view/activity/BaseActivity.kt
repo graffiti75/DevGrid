@@ -2,6 +2,7 @@ package br.cericatto.devgrid.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -46,15 +47,14 @@ abstract class BaseActivity : AppCompatActivity() {
     // Methods
     //--------------------------------------------------
 
-    fun setCustomToolbar(activity: AppCompatActivity, homeEnabled: Boolean) {
-        setSupportActionBar(id_toolbar)
+    fun setCustomToolbar(homeEnabled: Boolean) {
+        setSupportActionBar(id_toolbar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(homeEnabled)
-        id_toolbar.title = activity.title
     }
 
     fun setCustomToolbar(homeEnabled: Boolean, title: String) {
         setSupportActionBar(id_toolbar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(homeEnabled)
-        id_toolbar.title = title
+        supportActionBar?.title = title
     }
 }

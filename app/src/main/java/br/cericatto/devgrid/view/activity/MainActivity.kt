@@ -3,7 +3,7 @@ package br.cericatto.devgrid.view.activity
 import android.content.Intent
 import android.os.Bundle
 import br.cericatto.devgrid.R
-import br.cericatto.devgrid.presenter.GithubPresenterImpl
+import br.cericatto.devgrid.presenter.presenter.impl.MainPresenterImpl
 import br.cericatto.devgrid.presenter.api.ApiService
 import br.cericatto.devgrid.presenter.di.component.DaggerMainComponent
 import br.cericatto.devgrid.presenter.di.module.MainModule
@@ -22,7 +22,7 @@ class MainActivity : BaseActivity() {
     //--------------------------------------------------
 
     @Inject
-    lateinit var mPresenter: GithubPresenterImpl
+    lateinit var mPresenter: MainPresenterImpl
 
     @Inject
     lateinit var mApiService: ApiService
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setCustomToolbar(this, false)
+        setCustomToolbar(false)
         mPresenter.initDataSet(mApiService)
     }
 }

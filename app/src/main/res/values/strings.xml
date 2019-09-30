@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">DevGrid</string>
 
+    <string name="activity_detail">Commits</string>
+
     <string name="activity_test">Get Repos Test</string>
     <string name="activity_retrofit">Get User Test</string>
 
-    <string name="error_loading_user">Error loading user.</string>
+    <string name="error_loading_user">Error loading User.</string>
+    <string name="repo_without_commits">This repository does not contains commits.</string>
 </resources>

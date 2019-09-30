@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -35,7 +38,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${ANDROIDX_VERSION}"
     implementation "androidx.constraintlayout:constraintlayout:${CONSTRAINT_LAYOUT_VERSION}"
     implementation "androidx.recyclerview:recyclerview:${ANDROIDX_VERSION}"
-    implementation "androidx.cardview:cardview:${CARD_VIEW_VERSION}"
 
     // LiveData.
     implementation "androidx.lifecycle:lifecycle-extensions:${ANDROID_ARCH_VERSION}"

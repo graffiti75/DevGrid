@@ -13,12 +13,20 @@ object AppConfiguration {
     //----------------------------------------------
 
     const val BASE_URL = "https://api.github.com"
+    const val COMMITS_NUMBER = 5
+
     const val TEST_GITHUB_USER = "octocat"
     const val TEST_PUBLIC_REPOS = 8
 
-    // TODO: For safety reasons, not hardcoded values.
+    // TODO: Just a reminder -> For safety reasons, not hardcoded values.
     const val TEST_LOGIN = "graffiti75"
     const val TEST_PASSWORD = "z4pp41974Apostrophe*"
+
+    //----------------------------------------------
+    // Extras
+    //----------------------------------------------
+
+    const val REPO_NAME_EXTRA = "repo_name_extra"
 
     //----------------------------------------------
     // Logging
