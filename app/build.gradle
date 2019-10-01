@@ -44,14 +44,6 @@ dependencies {
     implementation "androidx.cardview:cardview:$CARD_VIEW_VERSION"
     implementation "com.google.android.material:material:$MATERIAL_VERSION"
 
-    // LiveData.
-    implementation "androidx.lifecycle:lifecycle-extensions:$ANDROID_ARCH_VERSION"
-    kapt "androidx.lifecycle:lifecycle-compiler:$ANDROID_ARCH_VERSION"
-
-    // Room.
-    implementation "androidx.room:room-runtime:$ANDROID_ARCH_VERSION"
-    kapt "androidx.room:room-compiler:$ANDROID_ARCH_VERSION"
-
     // Dagger.
     compileOnly "javax.annotation:jsr250-api:$JSR_VERSION"
     implementation "com.google.dagger:dagger:$DAGGER_VERSION"
@@ -62,15 +54,15 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN_VERSION"
     implementation "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION"
 
-    // Retrofit.
-    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
-    implementation "com.squareup.retrofit2:converter-moshi:$MOSHI_VERSION"
-    implementation "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
-
     // RxJava2
     implementation "com.squareup.retrofit2:adapter-rxjava2:$ADAPTER_RX_JAVA_VERSION"
     implementation "com.jakewharton.rxbinding:rxbinding:$RX_BINDING_VERSION"
     implementation "com.squareup.okhttp3:logging-interceptor:$LOGGING_INTERCEPTOR_VERSION"
+
+    // Retrofit.
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-moshi:$MOSHI_VERSION"
+    implementation "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
 
     // Logging.
     implementation "com.jakewharton.timber:timber:$TIMBER_VERSION"
