@@ -69,7 +69,12 @@ class MainActivity : BaseActivity() {
 
     private fun getData() {
         val (login, password) = mPresenter.getExtras()
-        if (checkIfHasNetwork()) mPresenter.initDataSet(this, mApiService, login, password)
-        else showToast(R.string.no_internet)
+        if (checkIfHasNetwork()) {
+            mPresenter.initRecyclerView()
+            mPresenter.initDataSet(this, mApiService, login, password)
+        } else {
+            showToast(R.string.no_internet)
+            finish()
+        }
     }
 }

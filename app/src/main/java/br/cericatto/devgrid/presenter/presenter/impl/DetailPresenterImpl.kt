@@ -4,8 +4,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.cericatto.devgrid.AppConfiguration
 import br.cericatto.devgrid.MainApplication
+import br.cericatto.devgrid.R
 import br.cericatto.devgrid.model.commit.GithubCommit
 import br.cericatto.devgrid.presenter.api.ApiService
+import br.cericatto.devgrid.presenter.extensions.showToast
 import br.cericatto.devgrid.presenter.getHeaderAuthentication
 import br.cericatto.devgrid.presenter.presenter.DetailPresenter
 import br.cericatto.devgrid.view.activity.DetailActivity
@@ -56,7 +58,11 @@ class DetailPresenterImpl @Inject constructor(private val mActivity: DetailActiv
                     Timber.i("getCommits() -> $it")
                 },
                 {
-                    it.message?.let { errorMessage -> showErrorMessage(errorMessage) }
+                    it.message?.let { errorMessage ->
+                        showErrorMessage(errorMessage)
+                        mActivity.showToast(mActivity.getString(R.string.activity_detail__authentication_error))
+                        mActivity.finish()
+                    }
                 },
                 // OnCompleted
                 {

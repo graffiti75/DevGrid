@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * ApiService.kt.
@@ -24,7 +25,8 @@ interface ApiService {
 //    fun getRepos(@Header("Authorization") authorization: String): Call<List<Repo>>
 
     @GET("/user/repos")
-    fun getRepos(@Header("Authorization") authorization: String): Observable<List<Repo>>
+    fun getRepos(@Header("Authorization") authorization: String,
+        @Query("page") page: Int): Observable<MutableList<Repo>>
 
     @GET("/repos/{user_login}/{repo_name}/commits")
     fun getCommits(@Header("Authorization") authorization: String,

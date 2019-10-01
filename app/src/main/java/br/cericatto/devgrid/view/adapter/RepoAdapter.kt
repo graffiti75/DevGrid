@@ -5,12 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.cericatto.devgrid.AppConfiguration
+import br.cericatto.devgrid.MainApplication
 import br.cericatto.devgrid.R
 import br.cericatto.devgrid.model.Repo
 import br.cericatto.devgrid.presenter.extensions.openActivityExtra
+import br.cericatto.devgrid.presenter.presenter.impl.MainPresenterImpl
 import br.cericatto.devgrid.view.activity.DetailActivity
 import br.cericatto.devgrid.view.activity.MainActivity
 import kotlinx.android.synthetic.main.item_repo.view.*
+import timber.log.Timber
 
 /**
  * RepoAdapter.kt.
@@ -18,14 +21,16 @@ import kotlinx.android.synthetic.main.item_repo.view.*
  * @author Rodrigo Cericatto
  * @since September 29, 2019
  */
-class RepoAdapter(activity: MainActivity, list: List<Repo>) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+class RepoAdapter(activity: MainActivity,
+    presenter: MainPresenterImpl) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
 
     //--------------------------------------------------
     // Attributes
     //--------------------------------------------------
 
     private val mActivity = activity
-    private var mRepoList = list
+    private val mPresenter = presenter
+    private var mRepoList: MutableList<Repo> = ArrayList()
 
     //--------------------------------------------------
     // Adapter Methods
@@ -40,13 +45,39 @@ class RepoAdapter(activity: MainActivity, list: List<Repo>) : RecyclerView.Adapt
         var repo = mRepoList[position]
         var view = holder.itemView
         setTitle(view, repo)
+        checkPagination(position)
     }
 
     override fun getItemCount(): Int = mRepoList.size
 
     //--------------------------------------------------
+    // Callback
+    //--------------------------------------------------
+
+    fun updateAdapter(list: MutableList<Repo>) {
+        val newList = mRepoList
+        newList.addAll(list)
+        mRepoList = newList
+        notifyDataSetChanged()
+    }
+
+    //--------------------------------------------------
     // Methods
     //--------------------------------------------------
+
+    private fun checkPagination(position: Int) {
+        val shouldPaginate : Boolean = position == (mRepoList.size - 1)
+        Timber.d("position: $position, itemCount - 1: ${mRepoList.size - 1}, shouldPaginate: $shouldPaginate")
+
+        val app: MainApplication = mActivity.application as MainApplication
+        val loadedAllData = app.loadedAllData
+        val page = app.page
+        if (!loadedAllData && shouldPaginate) {
+            app.page = page + 1
+            Timber.d("page: $page")
+            mPresenter.initDataSet()
+        }
+    }
 
     private fun setTitle(view: View, repo: Repo) {
         view.id_item_repo__title_text_view.text = repo.name

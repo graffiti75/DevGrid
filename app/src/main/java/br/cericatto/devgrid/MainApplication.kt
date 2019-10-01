@@ -19,6 +19,9 @@ open class MainApplication : Application() {
     lateinit var login: String
     lateinit var password: String
 
+    var page: Int = 1
+    var loadedAllData: Boolean = false
+
     override fun onCreate() {
         super.onCreate()
         initTimber()

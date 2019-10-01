@@ -16,6 +16,9 @@ object AppConfiguration {
     const val BASE_QRCODE_URL = "https://github.com"
     const val COMMITS_NUMBER = 5
 
+    const val PAGE = 1
+    const val ITEMS_PER_PAGE = 30
+
     const val TEST_GITHUB_USER = "octocat"
     const val TEST_PUBLIC_REPOS = 8
 

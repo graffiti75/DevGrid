@@ -12,7 +12,8 @@ import br.cericatto.devgrid.view.activity.MainActivity
  */
 interface MainPresenter {
     fun getExtras(): Pair<String, String>
+    fun initRecyclerView()
     fun initDataSet(context: MainActivity, service : ApiService, login: String, password: String)
-    fun showData(repos: List<Repo>)
+    fun showData(repos: MutableList<Repo>)
     fun showErrorMessage(error: String)
 }

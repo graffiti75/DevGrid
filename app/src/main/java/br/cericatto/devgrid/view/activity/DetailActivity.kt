@@ -95,6 +95,9 @@ class DetailActivity : BaseActivity() {
     private fun getData(repoName: String) {
         val app: MainApplication = application as MainApplication
         if (checkIfHasNetwork()) mPresenter.initDataSet(mApiService, app.login, app.password, repoName)
-        else showToast(R.string.no_internet)
+        else {
+            showToast(R.string.no_internet)
+            finish()
+        }
     }
 }

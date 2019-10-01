@@ -47,7 +47,8 @@ class TestActivity : AppCompatActivity() {
         })
          */
         val service = retrofit.create(ApiService::class.java)
-        val observable = service.getRepos(AppConfiguration.getHeaderAuthentication())
+        val observable = service.getRepos(
+            AppConfiguration.getHeaderAuthentication(), 1)
         val subscription = observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

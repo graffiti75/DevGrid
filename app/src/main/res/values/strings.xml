@@ -42,4 +42,6 @@
     <string name="activity_login__password_hint">Please type your Github password</string>
     <string name="activity_login__empty_password">Please type a valid password.</string>
     <string name="activity_login__authentication_error">Login or Password incorrect. Please, try again.</string>
+
+    <string name="activity_detail__authentication_error">Repository could not be loaded.</string>
 </resources>

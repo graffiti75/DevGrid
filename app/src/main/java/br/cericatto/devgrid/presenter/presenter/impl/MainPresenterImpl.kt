@@ -34,6 +34,9 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
     //--------------------------------------------------
 
     private lateinit var mAdapter: RepoAdapter
+    private lateinit var mService : ApiService
+    private lateinit var mLogin: String
+    private lateinit var mPassword: String
 
     //--------------------------------------------------
     // Override Methods
@@ -52,15 +55,34 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
         return Pair(login, password)
     }
 
+    override fun initRecyclerView() {
+        mAdapter = RepoAdapter(mActivity, this)
+        mActivity.id_activity_main__recycler_view.adapter = mAdapter
+        mActivity.id_activity_main__recycler_view.layoutManager = LinearLayoutManager(mActivity)
+    }
+
     override fun initDataSet(context: MainActivity, service : ApiService, login: String, password: String) {
-        val observable = service.getRepos(login.getHeaderAuthentication(password))
+        val app: MainApplication = context.application as MainApplication
+        val page = app.page
+        if (page == 1) {
+            mService = service
+            mLogin = login
+            mPassword = password
+        }
+
+        val observable = service.getRepos(
+            login.getHeaderAuthentication(password), page)
         val subscription = observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    showData(it)
-                    Timber.i("getRepos() -> $it")
+                    if (it.isNotEmpty()) {
+                        showData(it)
+                        Timber.i("getRepos() -> $it")
+                    } else {
+                        app.loadedAllData = true
+                    }
                 },
                 {
                     it.message?.let { errorMessage ->
@@ -78,8 +100,8 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
         composite.add(subscription)
     }
 
-    override fun showData(repos: List<Repo>) {
-        setAdapter(repos)
+    override fun showData(repos: MutableList<Repo>) {
+        updateAdapter(repos)
         Timber.d(repos.toString())
     }
 
@@ -88,16 +110,26 @@ class MainPresenterImpl @Inject constructor(private val mActivity: MainActivity)
     }
 
     //--------------------------------------------------
+    // Public Methods
+    //--------------------------------------------------
+
+    fun initDataSet() {
+        initDataSet(mActivity, mService, mLogin, mPassword)
+    }
+
+    fun callLoading() {
+        mActivity.id_activity_main__loading.visibility = View.VISIBLE
+    }
+
+    //--------------------------------------------------
     // Private Methods
     //--------------------------------------------------
 
-    private fun setAdapter(repos: List<Repo>) {
+    private fun updateAdapter(repos: MutableList<Repo>) {
         mActivity.id_activity_main__loading.visibility = View.GONE
         mActivity.id_activity_main__recycler_view.visibility = View.VISIBLE
 
-        mAdapter = RepoAdapter(mActivity, repos)
-        mActivity.id_activity_main__recycler_view.adapter = mAdapter
-        mActivity.id_activity_main__recycler_view.layoutManager = LinearLayoutManager(mActivity)
+        mAdapter.updateAdapter(repos)
     }
 
     private fun backToLoginScreen(context: MainActivity) {
